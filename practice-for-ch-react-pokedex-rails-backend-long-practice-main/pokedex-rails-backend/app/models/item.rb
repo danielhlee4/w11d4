@@ -12,4 +12,10 @@
 #  updated_at :datetime         not null
 #
 class Item < ApplicationRecord
+    
+    validates :id, :pokemon_id, :happiness, :image_url, presence: true
+    validates :name, length: { maximum: 255}
+    validates :price, :item, numericality: { greater_than: 0 }
+
+    belongs_to: :pokemon
 end

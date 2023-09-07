@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_07_174220) do
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
-    t.bigint "pokemon_id"
+    t.bigint "pokemon_id", null: false
     t.string "name", null: false
     t.integer "price", null: false
     t.integer "happiness", null: false
