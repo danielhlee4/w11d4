@@ -36,13 +36,17 @@ class Pokemon < ApplicationRecord
     validates :image_url, presence: true
     validates :captured, inclusion: [true, false]
     validates :name, length: { in: 3..255 }, uniqueness: { message: "'%{value}' is already in use" }
-    validates :number, numericality: { greater_than: 0 }
-    uniqueness: { message: "'%{value}' is already in use" }
+    validates :number, numericality: { greater_than: 0 }, uniqueness: { message: "'%{value}' is already in use" }
     validates :attack, :defense, numericality: { in: 0..100 }
     validates :poke_type, inclusion: { in: TYPES, message: "'%{value}' is not a valid Pokemon type" }
 
-    has_many: :items,
+    has_many :items,
         dependent: :destroy
-    has_many: :poke_moves,
+
+    has_many :poke_moves,
         dependent: :destroy
+
+    has_many :moves,
+        through: :poke_moves
+
 end
